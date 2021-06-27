@@ -23,7 +23,7 @@
 *  International Registered Trademark & Property of PrestaShop SA
 *}
 
-<form id="pgway-form" action="{$data->pay|escape:'htmlall':'UTF-8'}" method="post">
+<form id="pgway-form" action="{$data->url->pay|escape:'htmlall':'UTF-8'}" method="post">
     <div class="pgway-panel">
         <h3>{$data->ttl|escape:'htmlall':'UTF-8'}</h3>
         <hr {if ($data->ver == 17)}style="margin: 10px 0;"{/if}>
@@ -162,7 +162,7 @@ if (document.readyState != 'loading'){
     ('DOMContentLoaded', setOptionPGWay);
 }
 function setOptionPGWay() {
-    var srv = '{$data->srv nofilter}';
+    var srv = '{$data->url->srv nofilter}';
     var cur = '{$data->curs}';
     setTimeout(function(){
         

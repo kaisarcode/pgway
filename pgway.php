@@ -77,9 +77,9 @@ class PGWay extends PaymentModule
         $data->iso = $data->ctx->language->iso_code;
         $data->shp = $data->ctx->shop->id;
         $data->ssl = Tools::usingSecureMode();
-        $data->pay = $data->lnk->getModuleLink($this->name, 'payment', [], $data->ssl);
-        $data->srv = $data->lnk->getModuleLink($this->name, 'service', [], $data->ssl);
-        $data->srv .= "&pgway-token={$data->skey}";
+        $data->url = new stdClass();
+        $data->url->pay = $data->lnk->getModuleLink($this->name, 'payment', [], $data->ssl);
+        $data->url->srv = $data->lnk->getModuleLink($this->name, 'service', [], $data->ssl);
         
         return $data;
     }
@@ -165,7 +165,7 @@ class PGWay extends PaymentModule
         $data->curs = $curr->sign;
         
         $dnam = $data->ttl;
-        $link = $data->pay;
+        $link = $data->url->pay;
         $tmpl = $this->displayTpl('front/options', $data);
         $option = new \PrestaShop\PrestaShop\Core\Payment\PaymentOption();
         $option->setCallToActionText($dnam);
