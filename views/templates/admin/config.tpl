@@ -33,8 +33,8 @@
     
     <!-- TABS -->
     <ul class="pgway-tabs nav nav-tabs">
-        <li {if ($tab == 'crds')}class="active"{/if} data-sel="spl">
-            <a data-toggle="tab" href="#pgway-tab-crds">{l s='Credentials' mod='pgway'}</a>
+        <li {if ($tab == 'keys')}class="active"{/if} data-sel="spl">
+            <a data-toggle="tab" href="#pgway-tab-keys">{l s='Credentials' mod='pgway'}</a>
         </li>
         <li {if ($tab == 'opts')}class="active"{/if} data-sel="grp">
             <a data-toggle="tab" href="#pgway-tab-opts">{l s='Options' mod='pgway'}</a>
@@ -45,8 +45,8 @@
     <div class="pgway-tab-panel tab-content panel panel-default form-horizontal">
         
         <!-- CREDENTIALS -->
-        <div id="pgway-tab-crds" class="tab-pane fade in
-        {if ($tab == 'crds')}active{/if}">
+        <div id="pgway-tab-keys" class="tab-pane fade in
+        {if ($tab == 'keys')}active{/if}">
             <div class="form-wrapper">
                 
                 <!-- Sandbox mode -->
@@ -98,7 +98,7 @@
             </div>
             <div class="panel-footer">
                 <button
-                name="pgway-tab" value="crds"
+                name="pgway-tab" value="keys"
                 type="submit" class="btn btn-default pull-right">
                     <i class="process-icon-save"></i>
                     <span>{l s='Save' mod='pgway'}</span>

@@ -80,6 +80,9 @@ class PGWay extends PaymentModule
         $data->url = new stdClass();
         $data->url->pay = $data->lnk->getModuleLink($this->name, 'payment', [], $data->ssl);
         $data->url->srv = $data->lnk->getModuleLink($this->name, 'service', [], $data->ssl);
+        $data->url->api = new stdClass();
+        $data->url->api->sbox = 'https://sandbox.api.com/v1';
+        $data->url->api->live = 'https://api.com/v1';
         
         return $data;
     }
@@ -107,7 +110,7 @@ class PGWay extends PaymentModule
         !Configuration::get('PGWAY_TKN') ||
         !Configuration::get('PGWAY_KEY_SBX')||
         !Configuration::get('PGWAY_TKN_SBX'))&&
-        $data->tab = 'crds';
+        $data->tab = 'keys';
         
         // Display config
         return $this->displayTpl('admin/config', $data);
@@ -159,8 +162,6 @@ class PGWay extends PaymentModule
         $data->fname = $cust->firstname;
         $data->lname = $cust->lastname;
         $data->total = $cart->getOrderTotal(true, Cart::BOTH);
-        $data->cards = $this->getCards();
-        $data->banks = $this->getBanks();
         $curr = new Currency($cart->id_currency);
         $data->curs = $curr->sign;
         
