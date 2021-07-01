@@ -141,12 +141,10 @@ if (window.history.replaceState) {
     window.history.replaceState(null, null, window.location.href);
 }
 $('#pgway-sbx-on').on('change', function(){
-    var chk = $(this).is(':checked');
     $('.pgway-sbx-on').show();
     $('.pgway-sbx-off').hide();
 });
 $('#pgway-sbx-off').on('change', function(){
-    var chk = $(this).is(':checked');
     $('.pgway-sbx-on').hide();
     $('.pgway-sbx-off').show();
 });
