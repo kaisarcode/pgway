@@ -80,9 +80,11 @@ class PGWay extends PaymentModule
         $data->url = new stdClass();
         $data->url->pay = $data->lnk->getModuleLink($this->name, 'payment', [], $data->ssl);
         $data->url->srv = $data->lnk->getModuleLink($this->name, 'service', [], $data->ssl);
-        $data->url->api = new stdClass();
-        $data->url->api->sbox = 'https://sandbox.api.com/v1';
-        $data->url->api->live = 'https://api.com/v1';
+        
+        $data->url->api_sbox = 'https://sandbox.api.com/v1';
+        $data->url->api_live = 'https://api.com/v1';
+        $data->url->api_url = $data->api_prd;
+        $data->sbx && $data->api_url = $data->api_sbx;
         
         return $data;
     }
@@ -451,7 +453,7 @@ class PGWay extends PaymentModule
         $data = $this->setUp();
         $curl = curl_init();
         curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://pgway.com/api",
+            CURLOPT_URL => $data->api_url,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_ENCODING => "",
             CURLOPT_MAXREDIRS => 10,
