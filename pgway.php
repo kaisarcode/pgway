@@ -77,9 +77,10 @@ class PGWay extends PaymentModule
         $data->iso = $data->ctx->language->iso_code;
         $data->shp = $data->ctx->shop->id;
         $data->ssl = Tools::usingSecureMode();
+        $skeyp = ['pgway-srvkey' => $data->skey];
         $data->url = new stdClass();
-        $data->url->pay = $data->lnk->getModuleLink($this->name, 'payment', [], $data->ssl);
-        $data->url->srv = $data->lnk->getModuleLink($this->name, 'service', [], $data->ssl);
+        $data->url->pay = $data->lnk->getModuleLink($this->name, 'payment', $skeyp, $data->ssl);
+        $data->url->srv = $data->lnk->getModuleLink($this->name, 'service', $skeyp, $data->ssl);
         
         $data->url->api_sbox = 'https://sandbox.api.com/v1';
         $data->url->api_live = 'https://api.com/v1';

@@ -61,7 +61,7 @@ class PGWaySPromotionsModuleFrontController extends ModuleFrontController
             $out->res = 42;
         }
         
-        // GET PROMOTIONS
+        // DUMMY
         if ($ac == 'dummy' && $svk == $data->skey) {
             $out->ok = 1;
             $out->res = 'Dummy';
