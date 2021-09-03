@@ -135,9 +135,6 @@
                     </div>
                 </div>
                 
-                <!-- CARD TOKEN -->
-                <input type="hidden" id="pgway-card-token" name="pgway-card-token" value="">
-                
             </div>
         </div>
         
@@ -258,7 +255,7 @@ function setOptionPGWay() {
             
             // Perform async validation
             valid = true;
-            jQuery('#pgway-card-token').val('asdf');
+            
             if (!valid) {
                 jQuery('#payment-confirmation button').prop('disabled', 1);
                 return false;

@@ -63,27 +63,28 @@ class PGWayPaymentModuleFrontController extends ModuleFrontController
             $refer = Order::generateReference();
             
             // Form data
+            $data->cvc = Tools::getValue('pgway-cvc');
             $data->holder = Tools::getValue('pgway-holder');
-            $data->doctyp = Tools::getValue('pgway-doc-type');
-            $data->docnum = Tools::getValue('pgway-doc-number');
-            $data->crdnum = Tools::getValue('pgway-card-number');
             $data->cardid = Tools::getValue('pgway-card-id');
+            $data->doctyp = Tools::getValue('pgway-doc-type');
             $data->cardnm = Tools::getValue('pgway-card-name');
             $data->bankid = Tools::getValue('pgway-issuer-id');
+            $data->instot = Tools::getValue('pgway-ins-total');
+            $data->docnum = Tools::getValue('pgway-doc-number');
             $data->cardex = Tools::getValue('pgway-card-expir');
+            $data->crdnum = Tools::getValue('pgway-card-number');
             $data->cardexy = Tools::getValue('pgway-card-expir-y');
             $data->cardexm = Tools::getValue('pgway-card-expir-m');
-            $data->cvc = Tools::getValue('pgway-cvc');
-            $data->instot = Tools::getValue('pgway-ins-total');
+            
             
             // PGWAY PAYMENT
             $pmnt = array();
             $pmnt->total = $total;
-            $res = $modu->callAPI('payments', $pmnt);
+            $res = $modu->callAPI('payment', $pmnt);
             $data->res = $res;
             
             // PS ORDER
-            if (isset($res->id)) {
+            if (isset($res->status)) {
                 $status = $res->status;
                 
                 // Process PS data
@@ -113,7 +114,7 @@ class PGWayPaymentModuleFrontController extends ModuleFrontController
                     
                     // Show approved view
                     if ($status == 'approved') {
-                        //$this->loadPageTemplate('front', 'response', $data);
+                        //$this->loadPageTemplate('front', 'test', $data);
                         $url = 'index.php?controller=order-confirmation';
                         $url .= '&id_cart='.$cart->id;
                         $url .= '&id_module='.$modu->id;
